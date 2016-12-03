@@ -12,12 +12,14 @@ FROM andrewrothstein/docker-ansible:{{tag}}
 MAINTAINER "Andrew Rothstein" andrew.rothstein@gmail.com
 
 # embed roles
-ONBUILD ADD requirements.yml requirements.yml
-ONBUILD RUN ansible-galaxy install -r requirements.yml
-
-# execute playbook to configure container to suit
-ONBUILD ADD playbook.yml playbook.yml
-ONBUILD RUN ansible-playbook playbook.yml
+ONBUILD RUN export PLAYBOOK_DIR=/playbook-$(uuid)
+ONBUILD RUN mkdir -p $PLAYBOOK_DIR
+ONBUILD COPY . $PLAYBOOK_DIR
+ONBUILD WORKDIR $PLAYBOOK_DIR
+# install requirementes...
+ONBUILD RUN if [ -e requirements.yml ]; ansible-galaxy install -r requirements.yml; fi
+# run playbook to configure to suit
+ONBUILD RUN if [ -e playbook.yml ]; ansible-playbook playbook.yml; fi
 """
 
 def copy_file(tag, file) :
@@ -90,12 +92,13 @@ if __name__ == '__main__' :
   args = parser.parse_args()
 
   configs = [
+    { "tag" : "alpine_3.3" },
+    { "tag" : "alpine_3.5" },
+    { "tag" : "alpine_edge" },
     { "tag" : "fedora_23" },
-    { "tag" : "fedora_22" },
+    { "tag" : "fedora_24" },
     { "tag" : "centos_7" },
     { "tag" : "ubuntu_trusty" },
-    { "tag" : "ubuntu_vivid" },
-    { "tag" : "ubuntu_wily" },
     { "tag" : "ubuntu_xenial" }
   ]
 

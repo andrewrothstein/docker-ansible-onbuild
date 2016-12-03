@@ -1,5 +1,5 @@
 
-FROM andrewrothstein/docker-ansible:fedora_23
+FROM andrewrothstein/docker-ansible:fedora_24
 MAINTAINER "Andrew Rothstein" andrew.rothstein@gmail.com
 
 # embed roles
