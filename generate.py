@@ -97,6 +97,7 @@ if __name__ == '__main__' :
     { "tag" : "alpine_edge" },
     { "tag" : "fedora_23" },
     { "tag" : "fedora_24" },
+    { "tag" : "fedora_25" },
     { "tag" : "centos_7" },
     { "tag" : "ubuntu_trusty" },
     { "tag" : "ubuntu_xenial" },
