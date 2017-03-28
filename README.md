@@ -1,3 +1,3 @@
 andrewrothstein/docker-ansible-onbuild
 ======================================
-* Base container image for building containers with Ansible
+* Base container images for building containers with Ansible
