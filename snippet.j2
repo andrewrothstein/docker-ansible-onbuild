@@ -7,6 +7,6 @@ ONBUILD RUN mkdir -p $PLAYBOOK_DIR
 ONBUILD COPY . $PLAYBOOK_DIR
 ONBUILD WORKDIR $PLAYBOOK_DIR
 # install requirementes...
-ONBUILD RUN if [ -e requirements.yml ]; ansible-galaxy install -r requirements.yml; fi
+ONBUILD RUN if [ -e requirements.yml ]; then ansible-galaxy install -r requirements.yml; fi
 # run playbook to configure to suit
-ONBUILD RUN if [ -e playbook.yml ]; ansible-playbook playbook.yml; fi
+ONBUILD RUN if [ -e playbook.yml ]; then ansible-playbook playbook.yml; fi
