@@ -2,7 +2,7 @@ FROM {{fq_upstream_image}}
 MAINTAINER "Andrew Rothstein" andrew.rothstein@gmail.com
 
 # embed roles
-ONBUILD RUN export PLAYBOOK_DIR=/playbook-$(cat /dev/urandom | tr -cd 'a-f0-9' | head -c 32)
+ONBUILD ENV PLAYBOOK_DIR=/playbook-{{ genid(16) }}
 ONBUILD RUN mkdir -p $PLAYBOOK_DIR
 ONBUILD COPY . $PLAYBOOK_DIR
 ONBUILD WORKDIR $PLAYBOOK_DIR
