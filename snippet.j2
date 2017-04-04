@@ -1,6 +1,3 @@
-FROM {{fq_upstream_image}}
-MAINTAINER "Andrew Rothstein" andrew.rothstein@gmail.com
-
 # embed roles
 ONBUILD ENV PLAYBOOK_DIR=/playbook-{{ genid(16) }}
 ONBUILD RUN mkdir -p $PLAYBOOK_DIR
